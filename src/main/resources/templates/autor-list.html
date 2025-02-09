@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Autores</title>
+</head>
+<style>
+    /* Corpo da página */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #ffcb9c; /* Cor de fundo suave */
+        margin: 0;
+        padding: 0;
+        color: #333;
+    }
+
+    /* Cabeçalhos */
+    h1, h2, h3 {
+        color: #ff3e48; /* Destaque para os cabeçalhos */
+        text-align: center;
+    }
+
+    /* Links */
+    a {
+        color: #54cab8;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    /* Botões */
+    button, .btn {
+        background-color: #ff3e48;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    button:hover, .btn:hover {
+        background-color: #fc9093; /* Cor mais clara no hover */
+    }
+
+    /* Formulários */
+    form {
+        width: 50%;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fc9093;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+
+    input, select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    /* Tabelas */
+    table {
+        width: 90%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        background-color: white;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        text-align: left;
+        padding: 10px;
+    }
+
+    th {
+        background-color: #54cab8;
+        color: white;
+    }
+
+    tr:nth-child(even) {
+        background-color: #fc9093;
+    }
+
+    tr:hover {
+        background-color: #ffcb9c; /* Destaque ao passar o mouse */
+    }
+
+    /* Footer ou rodapé (opcional) */
+    footer {
+        text-align: center;
+        padding: 10px;
+        background-color: #54cab8;
+        color: white;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+</style>
+
+
+<body>
+    <h1>Lista de Autores</h1>
+    <a href="/autores/novo">Adicionar Novo Autor</a>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Acoes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="autor : ${autores}">
+                <td th:text="${autor.id}"></td>
+                <td th:text="${autor.nome}"></td>
+                <td>
+                    <a th:href="@{/autores/editar/{id}(id=${autor.id})}">Editar</a>
+                    <a th:href="@{/autores/excluir/{id}(id=${autor.id})}" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

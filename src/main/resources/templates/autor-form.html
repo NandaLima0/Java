@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cadastro de Autor</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #ffcb9c; /* Fundo suave */
+        color: #333; /* Cor do texto */
+        margin: 0;
+        padding: 0;
+    }
+
+    h1 {
+        text-align: center;
+        color: #ff3e48; /* Título em destaque */
+        margin: 20px 0;
+    }
+
+    a {
+        text-decoration: none;
+        color: #54cab8; /* Links com cor vibrante */
+        font-weight: bold;
+    }
+
+    a:hover {
+        color: #ff3e48; /* Links ao passar o mouse */
+    }
+
+    table {
+        width: 80%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        background-color: #ffffff; /* Fundo branco para contraste */
+    }
+
+    th, td {
+        border: 1px solid #fc9093;
+        padding: 10px;
+        text-align: center;
+    }
+
+    th {
+        background-color: #ff3e48; /* Cabeçalho da tabela */
+        color: #ffffff;
+    }
+
+    tr:nth-child(even) {
+        background-color: #fc9093; /* Linhas alternadas */
+    }
+
+    tr:nth-child(odd) {
+        background-color: #ffcb9c; /* Linhas alternadas */
+    }
+
+    form {
+        width: 60%;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #ffffff; /* Fundo do formulário */
+        border: 2px solid #ff3e48; /* Borda em destaque */
+        border-radius: 10px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #ff3e48;
+    }
+
+    input[type="text"], select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #fc9093;
+        border-radius: 5px;
+    }
+
+    button {
+        background-color: #54cab8; /* Botão principal */
+        color: #ffffff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    button:hover {
+        background-color: #ff3e48; /* Botão ao passar o mouse */
+    }
+
+    a[href]:not(button) {
+        margin-left: 10px;
+    }
+</style>
+<body>
+    <h1 th:text="${#strings.isEmpty(autor.id) ? 'Cadastrar Autor' : 'Editar Autor'}"></h1>
+    <form th:action="@{/autores}" th:object="${autor}" method="post">
+        <input type="hidden" th:field="*{id}" />
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" th:field="*{nome}" required />
+        <br />
+        <button type="submit">Salvar</button>
+        <a href="/autores">Cancelar</a>
+    </form>
+</body>
+</html>
